@@ -37,11 +37,15 @@ export const GlobalProvider = (props) => {
     const getTransactions = async (frequency, selectedDate, type) => {
         try {
             const user = JSON.parse(localStorage.getItem('user'));
-            const res = await axios.post("/transactions/get-transactions", {
+            const res = await axios.post("/api/v1/transactions/get-transactions", {
                 userId: user.id,
                 frequency,
                 selectedDate,
                 type
+            }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
             });
             dispatch({
                 type: "SET_TRANSACTIONS",
@@ -56,7 +60,11 @@ export const GlobalProvider = (props) => {
     const addTransaction = async (createTransaction) => {
         try {
             const user = JSON.parse(localStorage.getItem('user'));
-            const res = await axios.post('/transactions/add-transaction', { ...createTransaction, userId: user.id });
+            const res = await axios.post('/api/v1/transactions/add-transaction', { ...createTransaction, userId: user.id }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
             dispatch({
                 type: "SET_TRANSACTIONS",
                 payload: res.data
@@ -69,12 +77,16 @@ export const GlobalProvider = (props) => {
     const editTransaction = async (editable) => {
         try {
             const user = JSON.parse(localStorage.getItem('user'));
-            const res = await axios.post('/transactions/edit-transaction', {
+            const res = await axios.post('/api/v1/transactions/edit-transaction', {
                 payload: {
                     ...editable
                 },
                 transactionId: editable._id,
                 userId: user.id,
+            }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
             });
             dispatch({
                 type: "SET_TRANSACTIONS",
@@ -88,10 +100,18 @@ export const GlobalProvider = (props) => {
     const deleteTransaction = async (record) => {
         try {
             const user = JSON.parse(localStorage.getItem('user'));
-            const res = await axios.post('/transactions/delete-transaction', { transactionId: record._id, userId: user.id })
+            const res = await axios.post('/api/v1/transactions/delete-transaction', { transactionId: record._id, userId: user.id }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
             dispatch({
                 type: "SET_TRANSACTIONS",
                 payload: res.data
+            }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
             });
         } catch (err) {
             console.log(err);

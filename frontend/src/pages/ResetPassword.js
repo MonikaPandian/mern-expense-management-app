@@ -24,7 +24,11 @@ const ResetPassword = () => {
         }
         try {
             setLoading(true);
-            await axios.post(`/users/reset-password/${id}/${token}`, { password })
+            await axios.post(`/api/v1/users/reset-password/${id}/${token}`, { password }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
             setLoading(false);
             message.success("Password updated successfully !!");
             navigate("/login");

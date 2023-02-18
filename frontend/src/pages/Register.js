@@ -19,7 +19,11 @@ const Register = () => {
         }
         try {
             setLoading(true);
-            await axios.post("/users/register", { name: name, email: email, password: password });
+            await axios.post("/api/v1/users/register", { name: name, email: email, password: password }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
             message.success("Registration successful");
             setLoading(false);
             navigate('/login')

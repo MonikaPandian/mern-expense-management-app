@@ -19,7 +19,11 @@ const Login = () => {
         }
         try {
             setLoading(true);
-            const { data } = await axios.post("/users/login", { email: email, password: password });
+            const { data } = await axios.post("/api/v1/users/login", { email: email, password: password }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
             localStorage.setItem("user", JSON.stringify(data));
             setLoading(false);
             message.success("Login successful");
