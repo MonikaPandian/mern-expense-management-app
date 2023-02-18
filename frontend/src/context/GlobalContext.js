@@ -101,7 +101,6 @@ export const GlobalProvider = (props) => {
     const logout = async () => {
         try {
             localStorage.removeItem('user');
-            localStorage.removeItem('transactions');
             dispatch({ type: "RESET_USER" });
         } catch (err) {
             console.log(err);
