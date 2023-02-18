@@ -121,8 +121,8 @@ const HomePage = () => {
                     )}
                 </div>
                 <div className='switch-icons'>
-                    <UnorderedListOutlined className={`mx-2 ${viewData === "table" ? "active-icon" : "inactive-icon"}`} onClick={() => setViewData("table")} />
-                    <AreaChartOutlined className={`mx-2 ${viewData === "analytics" ? "active-icon" : "inactive-icon"}`} onClick={() => setViewData("analytics")} />
+                    <button className={`mx-2 p-2 btn btn-lg ${viewData === "table" ? "btn-secondary" : "btn-primary"}`} onClick={() => setViewData("table")} > <UnorderedListOutlined /></button>
+                    <button className={`mx-2 p-2 btn btn-lg ${viewData === "analytics" ? "btn-secondary" : "btn-primary"}`} onClick={() => setViewData("analytics")} ><AreaChartOutlined /></button>
                 </div>
                 <div>
                     <button className='btn btn-primary' onClick={() => setShowAddModal(true)}>Add New</button>

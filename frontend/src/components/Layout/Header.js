@@ -22,7 +22,7 @@ const Header = () => {
     };
 
     return (
-        <nav className="homepage-navbar navbar navbar-expand-lg bg-light">
+        <nav className="homepage-navbar navbar navbar-expand-lg">
             <div className="container-fluid">
                 <button
                     className="navbar-toggler"
