@@ -1,25 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route, Navigate } from "react-router-dom";
+import HomePage from './pages/HomePage';
+import Register from './pages/Register';
+import Login from "./pages/Login/Login"
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<ProtectedRoutes><HomePage /></ProtectedRoutes>} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
+    </Routes>
   );
+}
+
+export function ProtectedRoutes(props) {
+  if (localStorage.getItem("user")) {
+    return props.children;
+  } else {
+    return <Navigate to="/login"></Navigate>
+  }
 }
 
 export default App;
