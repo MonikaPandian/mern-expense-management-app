@@ -74,7 +74,7 @@ const forgotPassword = async (req, res) => {
             to: `${user.email}`,
             subject: 'Password reset link from Expense management application',
             html: `We have received your request for reset password. Click this link to reset your password.<br>
-                  <a href = ${link}><button>Click Here</button></a><br>
+                  <a href = ${link}><button style="cursor:pointer;background: red;">Click Here</button></a><br>
                   <p>This link is valid for 15 minutes from your request initiation for password recovery.</p>`
         };
 
